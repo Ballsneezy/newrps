@@ -7,73 +7,64 @@
 </head>
 <body>
     <script>
+        // gets computer value 
+        function getComputerChoice(){
 
-        console.log("doin ur mom!")
-
-        // returns random # (1-3) which each are labeled either r,p,s
-        function getComputerChoice (){
-
-           // most efficant 
-           const computer = ['rock', 'paper', 'scissor'];
-           return computer[Math.floor(Math.random() * 3 )];
-           
-           
-
-            // my original method 
-            // let random = Math.floor(Math.random() * 3) + 1;
-            // if (random === 1 ){
-            //     return "rock"
-            // }else if (random === 2){
-            //     return "paper"
-            // }
-            // return "scissor"
-
+            const rps = ['rock', 'paper', 'scissor'];
+            return rps[Math.floor(Math.random()* 3)];
 
         }
-        
-        
+        // gets human value
+        function getHumanChoice(){
 
-        // prompting my own choice gearing up for game
-        function getJonathanChoice () {
-            
-           return prompt('yo bitch');
-
-
-         
-        // let jonChoice = prompt('yo bitch');
-        // return jonChoice;
-        //original version 
+            return prompt("Rock paper or scissor?").toLowerCase();
 
         }
 
-        // basically youd set everything up to play the game first and then play the game 
-
-        //setting up scoreboard 
-        let jonScore = 0;
+        //scoreboard
+        let humanScore = 0;
         let computerScore = 0;
 
+     
+      
+        // plays one round, need arguments 
+        function playRound (humanChoice, computerChoice){
+        
+            console.log("human:", humanChoice);
+            console.log("computer:", computerChoice);
 
-        function playRound (jonChoice , computerChoice){
 
-            if (computerChoice == jonChoice){
-                return alert('tie!')
-            } else if (computerChoice == 'rock' && jonChoice == 'scissor' || computerChoice == 'paper' && jonChoice == 'rock' || computerChoice == 'scissor' && jonChoice == 'paper'){
-                return alert('computer wins!')
+            if (computerChoice === humanChoice){
+                console.log('tie');
+                return 'tie';
             }
-            return alert('Jonathan Wins!') 
-
+            else if (
+                (computerChoice === 'rock' && humanChoice === 'scissor')||
+                (computerChoice === 'paper' && humanChoice === 'rock') ||
+                (computerChoice === 'scissor' && humanChoice === 'paper')
+               ){
+                computerScore++;
+                console.log('lose');
+                return 'lose';
+            }
+            else {
+                humanScore++;
+                return 'win';
+            }
 
         }
+        const computerChoice = getComputerChoice();
+        const humanChoice = getHumanChoice();
+        const result = playRound(humanChoice, computerChoice);
+        console.log(result);
+        console.log(result);
+        console.log(result);
+        console.log(result);
 
-        const jonSelection = getJonathanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(jonSelection, computerSelection);
-
-
-
+       console.log(`score: Human ${humanScore} - ${computerScore} Computer`);
 
     </script>
+   
     
 </body>
 </html>
