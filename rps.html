@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button id="rock">ROCK</button>
+    <button id="paper">PAPER</button>
+    <button id="scissor">SCISSOR</button>
+    <h1 id = "result"></h1>
+    <h2 id="score"></h2>
+
+
+    
     <script>
         // gets computer value 
         function getComputerChoice(){
@@ -14,12 +23,26 @@
             return rps[Math.floor(Math.random()* 3)];
 
         }
+      
+
         // gets human value
-        function getHumanChoice(){
+        // function getHumanChoice(){
 
-            return prompt("Rock paper or scissor?").toLowerCase();
+           
+        //     let rock = document.getElementById('rock');
+        //     let paper = document.getElementById('paper');
+        //     let scissor = document.getElementById('scissor');
 
-        }
+        //     rock.textContent = "ROCK";
+        //     paper.textContent = "PAPER";
+        //     scissor.textContent = "SCISSOR";
+
+        //     rock.addEventListener('click', () => { return "rock"});
+        //     paper.addEventListener('click', () => {return "paper"});
+        //     scissor.addEventListener('click', () => {return "scissor"});
+            
+
+        // }
 
         //scoreboard
         let humanScore = 0;
@@ -53,17 +76,28 @@
             }
 
         }
-        const computerChoice = getComputerChoice();
-        const humanChoice = getHumanChoice();
-        const result = playRound(humanChoice, computerChoice);
-        console.log(result);
-        console.log(result);
-        console.log(result);
-        console.log(result);
+        function handleClick(choice) {
 
-       console.log(`score: Human ${humanScore} - ${computerScore} Computer`);
 
+           const computerChoice = getComputerChoice();
+           const result = playRound(choice, computerChoice);
+           
+           document.getElementById('result').textContent =
+            `You chose ${choice}, computer chose ${computerChoice}. Result: ${result}`;
+
+        document.getElementById('score').textContent =
+             `Score: Human ${humanScore} - ${computerScore} Computer`;
+    }
+
+    // Add event listeners to buttons
+    document.getElementById('rock').addEventListener('click', () => handleClick('rock'));
+    document.getElementById('paper').addEventListener('click', () => handleClick('paper'));
+    document.getElementById('scissor').addEventListener('click', () => handleClick('scissor'));
+
+        
     </script>
+
+  
    
     
 </body>
